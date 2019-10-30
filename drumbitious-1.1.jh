@@ -1,0 +1,169 @@
+
+
+// entity User ...
+// wird bereits von JHipster automatisch erzeugt.
+
+/* Noch zu lösen:
+  * - I18n:
+  *   https://phraseapp.com/blog/posts/database-stored-messages-for-i18n-in-spring-boot/
+  *
+  * noch zu klären: 
+  * User löscht Plan/Übungen. Wass passiert im Datenmodell?
+  *
+  **/
+entity I18nText {
+	locale String required maxlength(5),
+    textKey String required,
+    textContent String,
+    createDate Instant required, 
+    modifyDate Instant required,
+}
+
+/**
+ * Practice Plan that gets 
+ **/
+entity Plan {
+	planName String required,  // i18n
+    planFocus String required,  // i18n
+    description String,  // i18n
+    minutesPerSession Integer, 
+    sessionsPerWeek Integer,
+    targetDate Instant,
+    active Boolean, /** the plan the user set to be his current plan **/
+    createDate Instant required, 
+    modifyDate Instant required,
+}
+
+
+relationship ManyToOne {
+    Plan{owner(login)} to User
+    Plan{creator(login)} to User
+}
+
+entity ExcerciseConfig {
+    practiceBpm Integer min(1) max(500),
+    targetBpm Integer min(1) max(500),
+    minutes Integer min(1) max(500),
+    note String maxlength(5000),   
+    createDate Instant required, 
+    modifyDate Instant required,
+}
+relationship OneToMany {
+  ExcerciseConfig{plan(planName)} to Plan
+}
+relationship ManyToOne {
+	ExcerciseConfig{excercise(excerciseName)} to Excercise
+}
+
+entity Excercise {
+	excerciseName String required maxlength(200),   // i18n
+    description String maxlength(10000),   // i18n
+    sourceUrl String maxlength(2083), 
+    defaultMinutes Integer max(9000), 
+    defaultBpmMin Integer min(1) max(500),
+    defaultBpmMax Integer min(1) max(500),
+    deactivted Boolean,
+    createDate Instant required,  
+    modifyDate Instant required,
+}
+relationship ManyToOne{
+    Excercise{creator(login)} to User
+}    
+relationship ManyToMany{
+    Excercise{skillName(skillTextKey)} to SkillType
+    Excercise{excerciseType(excerciseTypeTextKey)} to ExcerciseType
+}
+
+entity SkillType {
+	skillTextKey String required maxlength(50)     
+}
+   /*
+    * SPEED, 
+    * GROOVE, 
+    * CREATIVITY,
+    * ADAPTABILITY,
+    * DYNAMICS,
+    * INDEPENDENCE,
+    * LIVE_PERFORMANCE,
+    * READING_MUSIC
+    */
+
+entity ExcerciseType {
+    excerciseTypeTextKey String required maxlength(50) 
+}
+    /*
+     *   RUDIMENT, 
+     *   TECHNIQUE, 
+     *   SONG,
+     *   PLAYALONG, 
+     *   SIGHT_READING
+     */
+
+entity FinishedSession {
+    minutesTotal Integer min(1) max(600),
+    note String maxlength(5000), 
+    createDate Instant required, 
+    modifyDate Instant required,
+} 
+relationship OneToOne {
+	FinishedSession{plan(planName)} to Plan
+}
+relationship OneToMany {
+	FinishedSession{excercise(excerciseName)} to FinishedExcercise
+}
+
+entity FinishedExcercise {
+	actualBpm Integer min(1) max(500),
+    actualMinutes Integer min(1) max(600),
+    createDate Instant required, 
+    modifyDate Instant required,
+}
+relationship ManyToOne {
+	/**
+    * Optional reference to excercise
+    */
+	FinishedExcercise{excercise(excerciseName)} to Excercise
+}
+
+
+entity DrummerStatistics {
+	selfAssessedLevelSpeed Integer min(0) max(10), 
+    selfAssessedLevelGroove Integer min(0) max(10),
+    selfAssessedLevelCreativity Integer min(0) max(10),
+    selfAssessedLevelAdaptability Integer min(0) max(10),
+    selfAssessedLevelDynamics Integer min(0) max(10),
+    selfAssessedLevelIndependence Integer min(0) max(10),
+    selfAssessedLevelLivePerformance Integer min(0) max(10),
+    selfAssessedLevelReadingMusic Integer min(0) max(10),
+    note String maxlength(10000),
+    createDate Instant required, 
+    modifyDate Instant required,
+}
+relationship OneToOne {
+	DrummerStatistics{user(login)} to User
+}
+
+// DTO
+// Use Data Transfert Objects (DTO)
+dto all with mapstruct
+
+// SERVICES
+// Set service options to all
+service all with serviceImpl
+
+// FILTERING
+filter Plan
+filter Excercise 
+filter ExcerciseConfig
+filter FinishedSession
+filter FinishedExcercise
+filter DrummerStatistics
+
+
+//ELASTICSEARCH
+//search Plan 
+//search Excercise 
+
+
+// Set an angular suffix
+// angularSuffix * with mySuffix
