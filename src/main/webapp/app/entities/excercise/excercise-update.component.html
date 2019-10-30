@@ -1,0 +1,170 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-excercise-heading" jhiTranslate="drumbitiousBackendApp.excercise.home.createOrEditLabel">Create or edit a Excercise</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!editForm.get('id').value">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id"
+                        readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="drumbitiousBackendApp.excercise.excerciseName" for="field_excerciseName">Excercise Name</label>
+                    <input type="text" class="form-control" name="excerciseName" id="field_excerciseName"
+                           formControlName="excerciseName"/>
+                    <div *ngIf="editForm.get('excerciseName').invalid && (editForm.get('excerciseName').dirty || editForm.get('excerciseName').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('excerciseName').errors.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('excerciseName').errors.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 200 }">
+                        This field cannot be longer than 200 characters.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="drumbitiousBackendApp.excercise.description" for="field_description">Description</label>
+                    <input type="text" class="form-control" name="description" id="field_description"
+                           formControlName="description"/>
+                    <div *ngIf="editForm.get('description').invalid && (editForm.get('description').dirty || editForm.get('description').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('description').errors.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 10000 }">
+                        This field cannot be longer than 10000 characters.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="drumbitiousBackendApp.excercise.sourceUrl" for="field_sourceUrl">Source Url</label>
+                    <input type="text" class="form-control" name="sourceUrl" id="field_sourceUrl"
+                           formControlName="sourceUrl"/>
+                    <div *ngIf="editForm.get('sourceUrl').invalid && (editForm.get('sourceUrl').dirty || editForm.get('sourceUrl').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('sourceUrl').errors.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 2083 }">
+                        This field cannot be longer than 2083 characters.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="drumbitiousBackendApp.excercise.defaultMinutes" for="field_defaultMinutes">Default Minutes</label>
+                    <input type="number" class="form-control" name="defaultMinutes" id="field_defaultMinutes"
+                           formControlName="defaultMinutes"/>
+                    <div *ngIf="editForm.get('defaultMinutes').invalid && (editForm.get('defaultMinutes').dirty || editForm.get('defaultMinutes').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('defaultMinutes').errors.max" jhiTranslate="entity.validation.max" [translateValues]="{ max: 9000 }">
+                            This field cannot be more than 9000.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.get('defaultMinutes')?.errors?.number" jhiTranslate="entity.validation.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="drumbitiousBackendApp.excercise.defaultBpmMin" for="field_defaultBpmMin">Default Bpm Min</label>
+                    <input type="number" class="form-control" name="defaultBpmMin" id="field_defaultBpmMin"
+                           formControlName="defaultBpmMin"/>
+                    <div *ngIf="editForm.get('defaultBpmMin').invalid && (editForm.get('defaultBpmMin').dirty || editForm.get('defaultBpmMin').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('defaultBpmMin').errors.min" jhiTranslate="entity.validation.min" [translateValues]="{ min: 1 }">
+                            This field should be at least 1.
+                        </small>
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('defaultBpmMin').errors.max" jhiTranslate="entity.validation.max" [translateValues]="{ max: 500 }">
+                            This field cannot be more than 500.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.get('defaultBpmMin')?.errors?.number" jhiTranslate="entity.validation.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="drumbitiousBackendApp.excercise.defaultBpmMax" for="field_defaultBpmMax">Default Bpm Max</label>
+                    <input type="number" class="form-control" name="defaultBpmMax" id="field_defaultBpmMax"
+                           formControlName="defaultBpmMax"/>
+                    <div *ngIf="editForm.get('defaultBpmMax').invalid && (editForm.get('defaultBpmMax').dirty || editForm.get('defaultBpmMax').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('defaultBpmMax').errors.min" jhiTranslate="entity.validation.min" [translateValues]="{ min: 1 }">
+                            This field should be at least 1.
+                        </small>
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('defaultBpmMax').errors.max" jhiTranslate="entity.validation.max" [translateValues]="{ max: 500 }">
+                            This field cannot be more than 500.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.get('defaultBpmMax')?.errors?.number" jhiTranslate="entity.validation.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="drumbitiousBackendApp.excercise.deactivted" for="field_deactivted">Deactivted</label>
+                    <input type="checkbox" class="form-control" name="deactivted" id="field_deactivted"
+                           formControlName="deactivted"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="drumbitiousBackendApp.excercise.createDate" for="field_createDate">Create Date</label>
+                    <div class="d-flex">
+                        <input id="field_createDate" type="datetime-local" class="form-control" name="createDate" formControlName="createDate" placeholder="YYYY-MM-DD HH:mm"/>
+                    </div>
+                    <div *ngIf="editForm.get('createDate').invalid && (editForm.get('createDate').dirty || editForm.get('createDate').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('createDate').errors.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.get('createDate').errors?.ZonedDateTimelocal" jhiTranslate="entity.validation.ZonedDateTimelocal">
+                            This field should be a date and time.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="drumbitiousBackendApp.excercise.modifyDate" for="field_modifyDate">Modify Date</label>
+                    <div class="d-flex">
+                        <input id="field_modifyDate" type="datetime-local" class="form-control" name="modifyDate" formControlName="modifyDate" placeholder="YYYY-MM-DD HH:mm"/>
+                    </div>
+                    <div *ngIf="editForm.get('modifyDate').invalid && (editForm.get('modifyDate').dirty || editForm.get('modifyDate').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('modifyDate').errors.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.get('modifyDate').errors?.ZonedDateTimelocal" jhiTranslate="entity.validation.ZonedDateTimelocal">
+                            This field should be a date and time.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="drumbitiousBackendApp.excercise.creator" for="field_creator">Creator</label>
+                    <select class="form-control" id="field_creator" name="creator" formControlName="creatorId">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="userOption.id" *ngFor="let userOption of users; trackBy: trackUserById">{{userOption.login}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label jhiTranslate="drumbitiousBackendApp.excercise.skillName" for="field_skillNames">Skill Name</label>
+                    <select class="form-control" id="field_skillNames" multiple name="skillNames" formControlName="skillNames">
+                        <option [ngValue]="getSelected(editForm.get('skillNames').value, skillTypeOption)" *ngFor="let skillTypeOption of skilltypes; trackBy: trackSkillTypeById">{{skillTypeOption.skillTextKey}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label jhiTranslate="drumbitiousBackendApp.excercise.excerciseType" for="field_excerciseTypes">Excercise Type</label>
+                    <select class="form-control" id="field_excerciseTypes" multiple name="excerciseTypes" formControlName="excerciseTypes">
+                        <option [ngValue]="getSelected(editForm.get('excerciseTypes').value, excerciseTypeOption)" *ngFor="let excerciseTypeOption of excercisetypes; trackBy: trackExcerciseTypeById">{{excerciseTypeOption.excerciseTypeTextKey}}</option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    <!--
+        Added the constraints for entity Excercise.
+    -->
+    <changeSet id="20191030213643-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="creator_id"
+                                 baseTableName="excercise"
+                                 constraintName="fk_excercise_creator_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="jhi_user"/>
+
+        <addForeignKeyConstraint baseColumnNames="excercise_id"
+                                 baseTableName="excercise_skill_name"
+                                 constraintName="fk_excercise_skill_name_excercise_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="excercise"/>
+
+        <addForeignKeyConstraint baseColumnNames="skill_name_id"
+                                 baseTableName="excercise_skill_name"
+                                 constraintName="fk_excercise_skill_name_skill_name_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="skill_type"/>
+        
+        <addForeignKeyConstraint baseColumnNames="excercise_id"
+                                 baseTableName="excercise_excercise_type"
+                                 constraintName="fk_excercise_excercise_type_excercise_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="excercise"/>
+
+        <addForeignKeyConstraint baseColumnNames="excercise_type_id"
+                                 baseTableName="excercise_excercise_type"
+                                 constraintName="fk_excercise_excercise_type_excercise_type_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="excercise_type"/>
+        
+    </changeSet>
+</databaseChangeLog>

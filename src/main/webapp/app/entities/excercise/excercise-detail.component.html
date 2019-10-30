@@ -1,0 +1,75 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="excercise">
+            <h2><span jhiTranslate="drumbitiousBackendApp.excercise.detail.title">Excercise</span> {{excercise.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="drumbitiousBackendApp.excercise.excerciseName">Excercise Name</span></dt>
+                <dd>
+                    <span>{{excercise.excerciseName}}</span>
+                </dd>
+                <dt><span jhiTranslate="drumbitiousBackendApp.excercise.description">Description</span></dt>
+                <dd>
+                    <span>{{excercise.description}}</span>
+                </dd>
+                <dt><span jhiTranslate="drumbitiousBackendApp.excercise.sourceUrl">Source Url</span></dt>
+                <dd>
+                    <span>{{excercise.sourceUrl}}</span>
+                </dd>
+                <dt><span jhiTranslate="drumbitiousBackendApp.excercise.defaultMinutes">Default Minutes</span></dt>
+                <dd>
+                    <span>{{excercise.defaultMinutes}}</span>
+                </dd>
+                <dt><span jhiTranslate="drumbitiousBackendApp.excercise.defaultBpmMin">Default Bpm Min</span></dt>
+                <dd>
+                    <span>{{excercise.defaultBpmMin}}</span>
+                </dd>
+                <dt><span jhiTranslate="drumbitiousBackendApp.excercise.defaultBpmMax">Default Bpm Max</span></dt>
+                <dd>
+                    <span>{{excercise.defaultBpmMax}}</span>
+                </dd>
+                <dt><span jhiTranslate="drumbitiousBackendApp.excercise.deactivted">Deactivted</span></dt>
+                <dd>
+                    <span>{{excercise.deactivted}}</span>
+                </dd>
+                <dt><span jhiTranslate="drumbitiousBackendApp.excercise.createDate">Create Date</span></dt>
+                <dd>
+                    <span>{{excercise.createDate}}</span>
+                </dd>
+                <dt><span jhiTranslate="drumbitiousBackendApp.excercise.modifyDate">Modify Date</span></dt>
+                <dd>
+                    <span>{{excercise.modifyDate}}</span>
+                </dd>
+                <dt><span jhiTranslate="drumbitiousBackendApp.excercise.creator">Creator</span></dt>
+                <dd>
+                    {{excercise.creatorLogin}}
+                </dd>
+                <dt><span jhiTranslate="drumbitiousBackendApp.excercise.skillName">Skill Name</span></dt>
+                <dd>
+                    <span *ngFor="let skillName of excercise.skillNames; let last = last">
+                        <a [routerLink]="['/skill-type', skillName?.id, 'view' ]">{{skillName.skillTextKey}}</a>{{last ? '' : ', '}}
+                    </span>
+                </dd>
+                <dt><span jhiTranslate="drumbitiousBackendApp.excercise.excerciseType">Excercise Type</span></dt>
+                <dd>
+                    <span *ngFor="let excerciseType of excercise.excerciseTypes; let last = last">
+                        <a [routerLink]="['/excercise-type', excerciseType?.id, 'view' ]">{{excerciseType.excerciseTypeTextKey}}</a>{{last ? '' : ', '}}
+                    </span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/excercise', excercise.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

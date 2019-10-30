@@ -1,0 +1,25 @@
+{
+    "name": "ExcerciseType",
+    "fields": [
+        {
+            "fieldName": "excerciseTypeTextKey",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": 50
+        }
+    ],
+    "relationships": [],
+    "changelogDate": "20191030213645",
+    "entityTableName": "excercise_type",
+    "dto": "mapstruct",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "",
+    "applications": "*"
+}

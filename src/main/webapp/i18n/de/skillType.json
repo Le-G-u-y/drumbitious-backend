@@ -1,0 +1,22 @@
+{
+  "drumbitiousBackendApp": {
+    "skillType": {
+      "home": {
+        "title": "Skill Types",
+        "createLabel": "Skill Type erstellen",
+        "createOrEditLabel": "Skill Type erstellen oder bearbeiten",
+        "notFound": "No Skill Types found"
+      },
+      "created": "Skill Type erstellt mit ID {{ param }}",
+      "updated": "Skill Type aktualisiert mit ID {{ param }}",
+      "deleted": "Skill Type gelöscht mit ID {{ param }}",
+      "delete": {
+        "question": "Soll Skill Type {{ id }} wirklich dauerhaft gelöscht werden?"
+      },
+      "detail": {
+        "title": "Skill Type"
+      },
+      "skillTextKey": "Skill Text Key"
+    }
+  }
+}

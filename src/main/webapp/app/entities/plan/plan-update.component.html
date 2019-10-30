@@ -1,0 +1,125 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-plan-heading" jhiTranslate="drumbitiousBackendApp.plan.home.createOrEditLabel">Create or edit a Plan</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!editForm.get('id').value">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id"
+                        readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="drumbitiousBackendApp.plan.planName" for="field_planName">Plan Name</label>
+                    <input type="text" class="form-control" name="planName" id="field_planName"
+                           formControlName="planName"/>
+                    <div *ngIf="editForm.get('planName').invalid && (editForm.get('planName').dirty || editForm.get('planName').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('planName').errors.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="drumbitiousBackendApp.plan.planFocus" for="field_planFocus">Plan Focus</label>
+                    <input type="text" class="form-control" name="planFocus" id="field_planFocus"
+                           formControlName="planFocus"/>
+                    <div *ngIf="editForm.get('planFocus').invalid && (editForm.get('planFocus').dirty || editForm.get('planFocus').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('planFocus').errors.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="drumbitiousBackendApp.plan.description" for="field_description">Description</label>
+                    <input type="text" class="form-control" name="description" id="field_description"
+                           formControlName="description"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="drumbitiousBackendApp.plan.minutesPerSession" for="field_minutesPerSession">Minutes Per Session</label>
+                    <input type="number" class="form-control" name="minutesPerSession" id="field_minutesPerSession"
+                           formControlName="minutesPerSession"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="drumbitiousBackendApp.plan.sessionsPerWeek" for="field_sessionsPerWeek">Sessions Per Week</label>
+                    <input type="number" class="form-control" name="sessionsPerWeek" id="field_sessionsPerWeek"
+                           formControlName="sessionsPerWeek"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="drumbitiousBackendApp.plan.targetDate" for="field_targetDate">Target Date</label>
+                    <div class="d-flex">
+                        <input id="field_targetDate" type="datetime-local" class="form-control" name="targetDate" formControlName="targetDate" placeholder="YYYY-MM-DD HH:mm"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="drumbitiousBackendApp.plan.active" for="field_active">Active</label>
+                    <input type="checkbox" class="form-control" name="active" id="field_active"
+                           formControlName="active"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="drumbitiousBackendApp.plan.createDate" for="field_createDate" [ngbTooltip]="'drumbitiousBackendApp.plan.help.createDate' | translate">Create Date</label>
+                    <div class="d-flex">
+                        <input id="field_createDate" type="datetime-local" class="form-control" name="createDate" formControlName="createDate" placeholder="YYYY-MM-DD HH:mm"/>
+                    </div>
+                    <div *ngIf="editForm.get('createDate').invalid && (editForm.get('createDate').dirty || editForm.get('createDate').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('createDate').errors.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.get('createDate').errors?.ZonedDateTimelocal" jhiTranslate="entity.validation.ZonedDateTimelocal">
+                            This field should be a date and time.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="drumbitiousBackendApp.plan.modifyDate" for="field_modifyDate">Modify Date</label>
+                    <div class="d-flex">
+                        <input id="field_modifyDate" type="datetime-local" class="form-control" name="modifyDate" formControlName="modifyDate" placeholder="YYYY-MM-DD HH:mm"/>
+                    </div>
+                    <div *ngIf="editForm.get('modifyDate').invalid && (editForm.get('modifyDate').dirty || editForm.get('modifyDate').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('modifyDate').errors.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.get('modifyDate').errors?.ZonedDateTimelocal" jhiTranslate="entity.validation.ZonedDateTimelocal">
+                            This field should be a date and time.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="drumbitiousBackendApp.plan.owner" for="field_owner">Owner</label>
+                    <select class="form-control" id="field_owner" name="owner" formControlName="ownerId">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="userOption.id" *ngFor="let userOption of users; trackBy: trackUserById">{{userOption.login}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="drumbitiousBackendApp.plan.creator" for="field_creator">Creator</label>
+                    <select class="form-control" id="field_creator" name="creator" formControlName="creatorId">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="userOption.id" *ngFor="let userOption of users; trackBy: trackUserById">{{userOption.login}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="drumbitiousBackendApp.plan.excerciseConfig" for="field_excerciseConfig">Excercise Config</label>
+                    <select class="form-control" id="field_excerciseConfig" name="excerciseConfig" formControlName="excerciseConfigId">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="excerciseConfigOption.id" *ngFor="let excerciseConfigOption of excerciseconfigs; trackBy: trackExcerciseConfigById">{{excerciseConfigOption.id}}</option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

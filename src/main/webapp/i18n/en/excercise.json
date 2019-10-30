@@ -1,0 +1,33 @@
+{
+  "drumbitiousBackendApp": {
+    "excercise": {
+      "home": {
+        "title": "Excercises",
+        "createLabel": "Create a new Excercise",
+        "createOrEditLabel": "Create or edit a Excercise",
+        "notFound": "No Excercises found"
+      },
+      "created": "A new Excercise is created with identifier {{ param }}",
+      "updated": "A Excercise is updated with identifier {{ param }}",
+      "deleted": "A Excercise is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Excercise {{ id }}?"
+      },
+      "detail": {
+        "title": "Excercise"
+      },
+      "excerciseName": "Excercise Name",
+      "description": "Description",
+      "sourceUrl": "Source Url",
+      "defaultMinutes": "Default Minutes",
+      "defaultBpmMin": "Default Bpm Min",
+      "defaultBpmMax": "Default Bpm Max",
+      "deactivted": "Deactivted",
+      "createDate": "Create Date",
+      "modifyDate": "Modify Date",
+      "creator": "Creator",
+      "skillName": "Skill Name",
+      "excerciseType": "Excercise Type"
+    }
+  }
+}

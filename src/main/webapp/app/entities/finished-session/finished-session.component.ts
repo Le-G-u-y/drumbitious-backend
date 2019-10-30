@@ -1,0 +1,58 @@
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { HttpResponse } from '@angular/common/http';
+import { Subscription } from 'rxjs';
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import { filter, map } from 'rxjs/operators';
+import { JhiEventManager } from 'ng-jhipster';
+
+import { IFinishedSession } from 'app/shared/model/finished-session.model';
+import { AccountService } from 'app/core/auth/account.service';
+import { FinishedSessionService } from './finished-session.service';
+
+@Component({
+  selector: 'jhi-finished-session',
+  templateUrl: './finished-session.component.html'
+})
+export class FinishedSessionComponent implements OnInit, OnDestroy {
+  finishedSessions: IFinishedSession[];
+  currentAccount: any;
+  eventSubscriber: Subscription;
+
+  constructor(
+    protected finishedSessionService: FinishedSessionService,
+    protected eventManager: JhiEventManager,
+    protected accountService: AccountService
+  ) {}
+
+  loadAll() {
+    this.finishedSessionService
+      .query()
+      .pipe(
+        filter((res: HttpResponse<IFinishedSession[]>) => res.ok),
+        map((res: HttpResponse<IFinishedSession[]>) => res.body)
+      )
+      .subscribe((res: IFinishedSession[]) => {
+        this.finishedSessions = res;
+      });
+  }
+
+  ngOnInit() {
+    this.loadAll();
+    this.accountService.identity().subscribe(account => {
+      this.currentAccount = account;
+    });
+    this.registerChangeInFinishedSessions();
+  }
+
+  ngOnDestroy() {
+    this.eventManager.destroy(this.eventSubscriber);
+  }
+
+  trackId(index: number, item: IFinishedSession) {
+    return item.id;
+  }
+
+  registerChangeInFinishedSessions() {
+    this.eventSubscriber = this.eventManager.subscribe('finishedSessionListModification', response => this.loadAll());
+  }
+}

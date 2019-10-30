@@ -1,0 +1,22 @@
+{
+  "drumbitiousBackendApp": {
+    "excerciseType": {
+      "home": {
+        "title": "Excercise Types",
+        "createLabel": "Excercise Type erstellen",
+        "createOrEditLabel": "Excercise Type erstellen oder bearbeiten",
+        "notFound": "No Excercise Types found"
+      },
+      "created": "Excercise Type erstellt mit ID {{ param }}",
+      "updated": "Excercise Type aktualisiert mit ID {{ param }}",
+      "deleted": "Excercise Type gelöscht mit ID {{ param }}",
+      "delete": {
+        "question": "Soll Excercise Type {{ id }} wirklich dauerhaft gelöscht werden?"
+      },
+      "detail": {
+        "title": "Excercise Type"
+      },
+      "excerciseTypeTextKey": "Excercise Type Text Key"
+    }
+  }
+}

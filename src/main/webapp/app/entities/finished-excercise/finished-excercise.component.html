@@ -1,0 +1,76 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="drumbitiousBackendApp.finishedExcercise.home.title">Finished Excercises</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-finished-excercise" [routerLink]="['/finished-excercise/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span  jhiTranslate="drumbitiousBackendApp.finishedExcercise.home.createLabel">
+            Create a new Finished Excercise
+            </span>
+        </button>
+    </h2>
+    <jhi-alert-error></jhi-alert-error>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="alert alert-warning" *ngIf="finishedExcercises?.length === 0">
+        <span jhiTranslate="drumbitiousBackendApp.finishedExcercise.home.notFound">No finishedExcercises found</span>
+    </div>
+    <div class="table-responsive" *ngIf="finishedExcercises?.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+            <tr>
+            <th scope="col" ><span jhiTranslate="global.field.id">ID</span></th>
+            <th scope="col" ><span jhiTranslate="drumbitiousBackendApp.finishedExcercise.actualBpm">Actual Bpm</span></th>
+            <th scope="col" ><span jhiTranslate="drumbitiousBackendApp.finishedExcercise.actualMinutes">Actual Minutes</span></th>
+            <th scope="col" ><span jhiTranslate="drumbitiousBackendApp.finishedExcercise.createDate">Create Date</span></th>
+            <th scope="col" ><span jhiTranslate="drumbitiousBackendApp.finishedExcercise.modifyDate">Modify Date</span></th>
+            <th scope="col" ><span jhiTranslate="drumbitiousBackendApp.finishedExcercise.finishedSession">Finished Session</span></th>
+            <th scope="col" ><span jhiTranslate="drumbitiousBackendApp.finishedExcercise.excercise">Excercise</span></th>
+            <th scope="col"></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let finishedExcercise of finishedExcercises ;trackBy: trackId">
+                <td><a [routerLink]="['/finished-excercise', finishedExcercise.id, 'view' ]">{{finishedExcercise.id}}</a></td>
+                <td>{{finishedExcercise.actualBpm}}</td>
+                <td>{{finishedExcercise.actualMinutes}}</td>
+                <td>{{finishedExcercise.createDate | date:'medium'}}</td>
+                <td>{{finishedExcercise.modifyDate | date:'medium'}}</td>
+                <td>
+                    <div *ngIf="finishedExcercise.finishedSessionId">
+                        <a [routerLink]="['/finished-session', finishedExcercise.finishedSessionId , 'view' ]" >{{finishedExcercise.finishedSessionId}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="finishedExcercise.excerciseId">
+                        <a [routerLink]="['/excercise', finishedExcercise.excerciseId , 'view' ]" >{{finishedExcercise.excerciseExcerciseName}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group">
+                        <button type="submit"
+                                [routerLink]="['/finished-excercise', finishedExcercise.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/finished-excercise', finishedExcercise.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/finished-excercise', { outlets: { popup: finishedExcercise.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

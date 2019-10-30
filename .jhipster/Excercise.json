@@ -1,0 +1,111 @@
+{
+    "name": "Excercise",
+    "fields": [
+        {
+            "fieldName": "excerciseName",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": 200
+        },
+        {
+            "fieldName": "description",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": 10000
+        },
+        {
+            "fieldName": "sourceUrl",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": 2083
+        },
+        {
+            "fieldName": "defaultMinutes",
+            "fieldType": "Integer",
+            "fieldValidateRules": [
+                "max"
+            ],
+            "fieldValidateRulesMax": 9000
+        },
+        {
+            "fieldName": "defaultBpmMin",
+            "fieldType": "Integer",
+            "fieldValidateRules": [
+                "min",
+                "max"
+            ],
+            "fieldValidateRulesMin": 1,
+            "fieldValidateRulesMax": 500
+        },
+        {
+            "fieldName": "defaultBpmMax",
+            "fieldType": "Integer",
+            "fieldValidateRules": [
+                "min",
+                "max"
+            ],
+            "fieldValidateRulesMin": 1,
+            "fieldValidateRulesMax": 500
+        },
+        {
+            "fieldName": "deactivted",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "createDate",
+            "fieldType": "Instant",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "modifyDate",
+            "fieldType": "Instant",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "user",
+            "otherEntityRelationshipName": "excercise",
+            "relationshipName": "creator",
+            "otherEntityField": "login"
+        },
+        {
+            "relationshipType": "many-to-many",
+            "otherEntityName": "skillType",
+            "otherEntityRelationshipName": "excercise",
+            "relationshipName": "skillName",
+            "otherEntityField": "skillTextKey",
+            "ownerSide": true
+        },
+        {
+            "relationshipType": "many-to-many",
+            "otherEntityName": "excerciseType",
+            "otherEntityRelationshipName": "excercise",
+            "relationshipName": "excerciseType",
+            "otherEntityField": "excerciseTypeTextKey",
+            "ownerSide": true
+        }
+    ],
+    "changelogDate": "20191030213643",
+    "entityTableName": "excercise",
+    "dto": "mapstruct",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": true,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "",
+    "applications": "*"
+}
