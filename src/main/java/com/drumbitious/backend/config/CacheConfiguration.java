@@ -42,6 +42,15 @@ public class CacheConfiguration {
             createCache(cm, com.drumbitious.backend.domain.User.class.getName());
             createCache(cm, com.drumbitious.backend.domain.Authority.class.getName());
             createCache(cm, com.drumbitious.backend.domain.User.class.getName() + ".authorities");
+            createCache(cm, com.drumbitious.backend.domain.I18nText.class.getName());
+            createCache(cm, com.drumbitious.backend.domain.Plan.class.getName());
+            createCache(cm, com.drumbitious.backend.domain.ExerciseConfig.class.getName());
+            createCache(cm, com.drumbitious.backend.domain.ExerciseConfig.class.getName() + ".plans");
+            createCache(cm, com.drumbitious.backend.domain.Exercise.class.getName());
+            createCache(cm, com.drumbitious.backend.domain.FinishedSession.class.getName());
+            createCache(cm, com.drumbitious.backend.domain.FinishedSession.class.getName() + ".exercises");
+            createCache(cm, com.drumbitious.backend.domain.FinishedExercise.class.getName());
+            createCache(cm, com.drumbitious.backend.domain.DrummerStatistics.class.getName());
             // jhipster-needle-ehcache-add-entry
         };
     }

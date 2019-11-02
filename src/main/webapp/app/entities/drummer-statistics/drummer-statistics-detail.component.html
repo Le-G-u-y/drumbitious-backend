@@ -1,0 +1,71 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="drummerStatistics">
+            <h2><span jhiTranslate="drumbitiousBackendApp.drummerStatistics.detail.title">Drummer Statistics</span> {{drummerStatistics.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="drumbitiousBackendApp.drummerStatistics.selfAssessedLevelSpeed">Self Assessed Level Speed</span></dt>
+                <dd>
+                    <span>{{drummerStatistics.selfAssessedLevelSpeed}}</span>
+                </dd>
+                <dt><span jhiTranslate="drumbitiousBackendApp.drummerStatistics.selfAssessedLevelGroove">Self Assessed Level Groove</span></dt>
+                <dd>
+                    <span>{{drummerStatistics.selfAssessedLevelGroove}}</span>
+                </dd>
+                <dt><span jhiTranslate="drumbitiousBackendApp.drummerStatistics.selfAssessedLevelCreativity">Self Assessed Level Creativity</span></dt>
+                <dd>
+                    <span>{{drummerStatistics.selfAssessedLevelCreativity}}</span>
+                </dd>
+                <dt><span jhiTranslate="drumbitiousBackendApp.drummerStatistics.selfAssessedLevelAdaptability">Self Assessed Level Adaptability</span></dt>
+                <dd>
+                    <span>{{drummerStatistics.selfAssessedLevelAdaptability}}</span>
+                </dd>
+                <dt><span jhiTranslate="drumbitiousBackendApp.drummerStatistics.selfAssessedLevelDynamics">Self Assessed Level Dynamics</span></dt>
+                <dd>
+                    <span>{{drummerStatistics.selfAssessedLevelDynamics}}</span>
+                </dd>
+                <dt><span jhiTranslate="drumbitiousBackendApp.drummerStatistics.selfAssessedLevelIndependence">Self Assessed Level Independence</span></dt>
+                <dd>
+                    <span>{{drummerStatistics.selfAssessedLevelIndependence}}</span>
+                </dd>
+                <dt><span jhiTranslate="drumbitiousBackendApp.drummerStatistics.selfAssessedLevelLivePerformance">Self Assessed Level Live Performance</span></dt>
+                <dd>
+                    <span>{{drummerStatistics.selfAssessedLevelLivePerformance}}</span>
+                </dd>
+                <dt><span jhiTranslate="drumbitiousBackendApp.drummerStatistics.selfAssessedLevelReadingMusic">Self Assessed Level Reading Music</span></dt>
+                <dd>
+                    <span>{{drummerStatistics.selfAssessedLevelReadingMusic}}</span>
+                </dd>
+                <dt><span jhiTranslate="drumbitiousBackendApp.drummerStatistics.note">Note</span></dt>
+                <dd>
+                    <span>{{drummerStatistics.note}}</span>
+                </dd>
+                <dt><span jhiTranslate="drumbitiousBackendApp.drummerStatistics.createDate">Create Date</span></dt>
+                <dd>
+                    <span>{{drummerStatistics.createDate}}</span>
+                </dd>
+                <dt><span jhiTranslate="drumbitiousBackendApp.drummerStatistics.modifyDate">Modify Date</span></dt>
+                <dd>
+                    <span>{{drummerStatistics.modifyDate}}</span>
+                </dd>
+                <dt><span jhiTranslate="drumbitiousBackendApp.drummerStatistics.user">User</span></dt>
+                <dd>
+                    {{drummerStatistics.userLogin}}
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/drummer-statistics', drummerStatistics.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

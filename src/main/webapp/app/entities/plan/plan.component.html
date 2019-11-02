@@ -1,0 +1,88 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="drumbitiousBackendApp.plan.home.title">Plans</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-plan" [routerLink]="['/plan/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span  jhiTranslate="drumbitiousBackendApp.plan.home.createLabel">
+            Create a new Plan
+            </span>
+        </button>
+    </h2>
+    <jhi-alert-error></jhi-alert-error>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="alert alert-warning" *ngIf="plans?.length === 0">
+        <span jhiTranslate="drumbitiousBackendApp.plan.home.notFound">No plans found</span>
+    </div>
+    <div class="table-responsive" *ngIf="plans?.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+            <tr>
+            <th scope="col" ><span jhiTranslate="global.field.id">ID</span></th>
+            <th scope="col" ><span jhiTranslate="drumbitiousBackendApp.plan.planName">Plan Name</span></th>
+            <th scope="col" ><span jhiTranslate="drumbitiousBackendApp.plan.planFocus">Plan Focus</span></th>
+            <th scope="col" ><span jhiTranslate="drumbitiousBackendApp.plan.description">Description</span></th>
+            <th scope="col" ><span jhiTranslate="drumbitiousBackendApp.plan.minutesPerSession">Minutes Per Session</span></th>
+            <th scope="col" ><span jhiTranslate="drumbitiousBackendApp.plan.sessionsPerWeek">Sessions Per Week</span></th>
+            <th scope="col" ><span jhiTranslate="drumbitiousBackendApp.plan.targetDate">Target Date</span></th>
+            <th scope="col" ><span jhiTranslate="drumbitiousBackendApp.plan.active">Active</span></th>
+            <th scope="col" ><span jhiTranslate="drumbitiousBackendApp.plan.createDate">Create Date</span></th>
+            <th scope="col" ><span jhiTranslate="drumbitiousBackendApp.plan.modifyDate">Modify Date</span></th>
+            <th scope="col" ><span jhiTranslate="drumbitiousBackendApp.plan.owner">Owner</span></th>
+            <th scope="col" ><span jhiTranslate="drumbitiousBackendApp.plan.creator">Creator</span></th>
+            <th scope="col" ><span jhiTranslate="drumbitiousBackendApp.plan.exerciseConfig">Exercise Config</span></th>
+            <th scope="col"></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let plan of plans ;trackBy: trackId">
+                <td><a [routerLink]="['/plan', plan.id, 'view' ]">{{plan.id}}</a></td>
+                <td>{{plan.planName}}</td>
+                <td>{{plan.planFocus}}</td>
+                <td>{{plan.description}}</td>
+                <td>{{plan.minutesPerSession}}</td>
+                <td>{{plan.sessionsPerWeek}}</td>
+                <td>{{plan.targetDate | date:'medium'}}</td>
+                <td>{{plan.active}}</td>
+                <td>{{plan.createDate | date:'medium'}}</td>
+                <td>{{plan.modifyDate | date:'medium'}}</td>
+                <td>
+                    {{plan.ownerLogin}}
+                </td>
+                <td>
+                    {{plan.creatorLogin}}
+                </td>
+                <td>
+                    <div *ngIf="plan.exerciseConfigId">
+                        <a [routerLink]="['/exercise-config', plan.exerciseConfigId , 'view' ]" >{{plan.exerciseConfigId}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group">
+                        <button type="submit"
+                                [routerLink]="['/plan', plan.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/plan', plan.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/plan', { outlets: { popup: plan.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

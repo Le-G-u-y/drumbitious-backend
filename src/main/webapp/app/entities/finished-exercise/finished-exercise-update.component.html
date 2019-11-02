@@ -1,0 +1,108 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-finished-exercise-heading" jhiTranslate="drumbitiousBackendApp.finishedExercise.home.createOrEditLabel">Create or edit a Finished Exercise</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!editForm.get('id').value">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id"
+                        readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="drumbitiousBackendApp.finishedExercise.actualBpm" for="field_actualBpm">Actual Bpm</label>
+                    <input type="number" class="form-control" name="actualBpm" id="field_actualBpm"
+                           formControlName="actualBpm"/>
+                    <div *ngIf="editForm.get('actualBpm').invalid && (editForm.get('actualBpm').dirty || editForm.get('actualBpm').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('actualBpm').errors.min" jhiTranslate="entity.validation.min" [translateValues]="{ min: 1 }">
+                            This field should be at least 1.
+                        </small>
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('actualBpm').errors.max" jhiTranslate="entity.validation.max" [translateValues]="{ max: 500 }">
+                            This field cannot be more than 500.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.get('actualBpm')?.errors?.number" jhiTranslate="entity.validation.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="drumbitiousBackendApp.finishedExercise.actualMinutes" for="field_actualMinutes">Actual Minutes</label>
+                    <input type="number" class="form-control" name="actualMinutes" id="field_actualMinutes"
+                           formControlName="actualMinutes"/>
+                    <div *ngIf="editForm.get('actualMinutes').invalid && (editForm.get('actualMinutes').dirty || editForm.get('actualMinutes').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('actualMinutes').errors.min" jhiTranslate="entity.validation.min" [translateValues]="{ min: 1 }">
+                            This field should be at least 1.
+                        </small>
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('actualMinutes').errors.max" jhiTranslate="entity.validation.max" [translateValues]="{ max: 600 }">
+                            This field cannot be more than 600.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.get('actualMinutes')?.errors?.number" jhiTranslate="entity.validation.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="drumbitiousBackendApp.finishedExercise.createDate" for="field_createDate">Create Date</label>
+                    <div class="d-flex">
+                        <input id="field_createDate" type="datetime-local" class="form-control" name="createDate" formControlName="createDate" placeholder="YYYY-MM-DD HH:mm"/>
+                    </div>
+                    <div *ngIf="editForm.get('createDate').invalid && (editForm.get('createDate').dirty || editForm.get('createDate').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('createDate').errors.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.get('createDate').errors?.ZonedDateTimelocal" jhiTranslate="entity.validation.ZonedDateTimelocal">
+                            This field should be a date and time.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="drumbitiousBackendApp.finishedExercise.modifyDate" for="field_modifyDate">Modify Date</label>
+                    <div class="d-flex">
+                        <input id="field_modifyDate" type="datetime-local" class="form-control" name="modifyDate" formControlName="modifyDate" placeholder="YYYY-MM-DD HH:mm"/>
+                    </div>
+                    <div *ngIf="editForm.get('modifyDate').invalid && (editForm.get('modifyDate').dirty || editForm.get('modifyDate').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('modifyDate').errors.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.get('modifyDate').errors?.ZonedDateTimelocal" jhiTranslate="entity.validation.ZonedDateTimelocal">
+                            This field should be a date and time.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="drumbitiousBackendApp.finishedExercise.finishedSession" for="field_finishedSession">Finished Session</label>
+                    <select class="form-control" id="field_finishedSession" name="finishedSession" formControlName="finishedSessionId">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="finishedSessionOption.id" *ngFor="let finishedSessionOption of finishedsessions; trackBy: trackFinishedSessionById">{{finishedSessionOption.id}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="drumbitiousBackendApp.finishedExercise.exercise" for="field_exercise">Exercise</label>
+                    <select class="form-control" id="field_exercise" name="exercise" formControlName="exerciseId">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="exerciseOption.id" *ngFor="let exerciseOption of exercises; trackBy: trackExerciseById">{{exerciseOption.exerciseName}}</option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,82 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="drumbitiousBackendApp.exercise.home.title">Exercises</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-exercise" [routerLink]="['/exercise/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span  jhiTranslate="drumbitiousBackendApp.exercise.home.createLabel">
+            Create a new Exercise
+            </span>
+        </button>
+    </h2>
+    <jhi-alert-error></jhi-alert-error>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="alert alert-warning" *ngIf="exercises?.length === 0">
+        <span jhiTranslate="drumbitiousBackendApp.exercise.home.notFound">No exercises found</span>
+    </div>
+    <div class="table-responsive" *ngIf="exercises?.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+            <tr>
+            <th scope="col" ><span jhiTranslate="global.field.id">ID</span></th>
+            <th scope="col" ><span jhiTranslate="drumbitiousBackendApp.exercise.exerciseName">Exercise Name</span></th>
+            <th scope="col" ><span jhiTranslate="drumbitiousBackendApp.exercise.description">Description</span></th>
+            <th scope="col" ><span jhiTranslate="drumbitiousBackendApp.exercise.sourceUrl">Source Url</span></th>
+            <th scope="col" ><span jhiTranslate="drumbitiousBackendApp.exercise.defaultMinutes">Default Minutes</span></th>
+            <th scope="col" ><span jhiTranslate="drumbitiousBackendApp.exercise.defaultBpmMin">Default Bpm Min</span></th>
+            <th scope="col" ><span jhiTranslate="drumbitiousBackendApp.exercise.defaultBpmMax">Default Bpm Max</span></th>
+            <th scope="col" ><span jhiTranslate="drumbitiousBackendApp.exercise.deactivted">Deactivted</span></th>
+            <th scope="col" ><span jhiTranslate="drumbitiousBackendApp.exercise.createDate">Create Date</span></th>
+            <th scope="col" ><span jhiTranslate="drumbitiousBackendApp.exercise.modifyDate">Modify Date</span></th>
+            <th scope="col" ><span jhiTranslate="drumbitiousBackendApp.exercise.skillType">Skill Type</span></th>
+            <th scope="col" ><span jhiTranslate="drumbitiousBackendApp.exercise.exercise">Exercise</span></th>
+            <th scope="col" ><span jhiTranslate="drumbitiousBackendApp.exercise.creator">Creator</span></th>
+            <th scope="col"></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let exercise of exercises ;trackBy: trackId">
+                <td><a [routerLink]="['/exercise', exercise.id, 'view' ]">{{exercise.id}}</a></td>
+                <td>{{exercise.exerciseName}}</td>
+                <td>{{exercise.description}}</td>
+                <td>{{exercise.sourceUrl}}</td>
+                <td>{{exercise.defaultMinutes}}</td>
+                <td>{{exercise.defaultBpmMin}}</td>
+                <td>{{exercise.defaultBpmMax}}</td>
+                <td>{{exercise.deactivted}}</td>
+                <td>{{exercise.createDate | date:'medium'}}</td>
+                <td>{{exercise.modifyDate | date:'medium'}}</td>
+                <td jhiTranslate="{{'drumbitiousBackendApp.SkillType.' + exercise.skillType}}">{{exercise.skillType}}</td>
+                <td jhiTranslate="{{'drumbitiousBackendApp.ExerciseType.' + exercise.exercise}}">{{exercise.exercise}}</td>
+                <td>
+                    {{exercise.creatorLogin}}
+                </td>
+                <td class="text-right">
+                    <div class="btn-group">
+                        <button type="submit"
+                                [routerLink]="['/exercise', exercise.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/exercise', exercise.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/exercise', { outlets: { popup: exercise.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

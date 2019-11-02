@@ -1,0 +1,51 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="finishedExercise">
+            <h2><span jhiTranslate="drumbitiousBackendApp.finishedExercise.detail.title">Finished Exercise</span> {{finishedExercise.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="drumbitiousBackendApp.finishedExercise.actualBpm">Actual Bpm</span></dt>
+                <dd>
+                    <span>{{finishedExercise.actualBpm}}</span>
+                </dd>
+                <dt><span jhiTranslate="drumbitiousBackendApp.finishedExercise.actualMinutes">Actual Minutes</span></dt>
+                <dd>
+                    <span>{{finishedExercise.actualMinutes}}</span>
+                </dd>
+                <dt><span jhiTranslate="drumbitiousBackendApp.finishedExercise.createDate">Create Date</span></dt>
+                <dd>
+                    <span>{{finishedExercise.createDate}}</span>
+                </dd>
+                <dt><span jhiTranslate="drumbitiousBackendApp.finishedExercise.modifyDate">Modify Date</span></dt>
+                <dd>
+                    <span>{{finishedExercise.modifyDate}}</span>
+                </dd>
+                <dt><span jhiTranslate="drumbitiousBackendApp.finishedExercise.finishedSession">Finished Session</span></dt>
+                <dd>
+                    <div *ngIf="finishedExercise.finishedSessionId">
+                        <a [routerLink]="['/finished-session', finishedExercise.finishedSessionId, 'view']">{{finishedExercise.finishedSessionId}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="drumbitiousBackendApp.finishedExercise.exercise">Exercise</span></dt>
+                <dd>
+                    <div *ngIf="finishedExercise.exerciseId">
+                        <a [routerLink]="['/exercise', finishedExercise.exerciseId, 'view']">{{finishedExercise.exerciseExerciseName}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/finished-exercise', finishedExercise.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

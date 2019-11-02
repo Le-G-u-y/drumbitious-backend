@@ -1,0 +1,27 @@
+{
+  "drumbitiousBackendApp": {
+    "finishedExercise": {
+      "home": {
+        "title": "Finished Exercises",
+        "createLabel": "Finished Exercise erstellen",
+        "createOrEditLabel": "Finished Exercise erstellen oder bearbeiten",
+        "notFound": "No Finished Exercises found"
+      },
+      "created": "Finished Exercise erstellt mit ID {{ param }}",
+      "updated": "Finished Exercise aktualisiert mit ID {{ param }}",
+      "deleted": "Finished Exercise gelöscht mit ID {{ param }}",
+      "delete": {
+        "question": "Soll Finished Exercise {{ id }} wirklich dauerhaft gelöscht werden?"
+      },
+      "detail": {
+        "title": "Finished Exercise"
+      },
+      "actualBpm": "Actual Bpm",
+      "actualMinutes": "Actual Minutes",
+      "createDate": "Create Date",
+      "modifyDate": "Modify Date",
+      "finishedSession": "Finished Session",
+      "exercise": "Exercise"
+    }
+  }
+}

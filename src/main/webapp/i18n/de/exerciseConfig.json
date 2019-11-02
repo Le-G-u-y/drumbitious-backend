@@ -1,0 +1,29 @@
+{
+  "drumbitiousBackendApp": {
+    "exerciseConfig": {
+      "home": {
+        "title": "Exercise Configs",
+        "createLabel": "Exercise Config erstellen",
+        "createOrEditLabel": "Exercise Config erstellen oder bearbeiten",
+        "notFound": "No Exercise Configs found"
+      },
+      "created": "Exercise Config erstellt mit ID {{ param }}",
+      "updated": "Exercise Config aktualisiert mit ID {{ param }}",
+      "deleted": "Exercise Config gelöscht mit ID {{ param }}",
+      "delete": {
+        "question": "Soll Exercise Config {{ id }} wirklich dauerhaft gelöscht werden?"
+      },
+      "detail": {
+        "title": "Exercise Config"
+      },
+      "practiceBpm": "Practice Bpm",
+      "targetBpm": "Target Bpm",
+      "minutes": "Minutes",
+      "note": "Note",
+      "createDate": "Create Date",
+      "modifyDate": "Modify Date",
+      "plan": "Plan",
+      "exercise": "Exercise"
+    }
+  }
+}

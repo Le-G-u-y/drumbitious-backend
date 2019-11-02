@@ -1,0 +1,87 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-i-18-n-text-heading" jhiTranslate="drumbitiousBackendApp.i18nText.home.createOrEditLabel">Create or edit a I 18 N Text</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!editForm.get('id').value">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id"
+                        readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="drumbitiousBackendApp.i18nText.locale" for="field_locale">Locale</label>
+                    <input type="text" class="form-control" name="locale" id="field_locale"
+                           formControlName="locale"/>
+                    <div *ngIf="editForm.get('locale').invalid && (editForm.get('locale').dirty || editForm.get('locale').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('locale').errors.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('locale').errors.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 5 }">
+                        This field cannot be longer than 5 characters.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="drumbitiousBackendApp.i18nText.textKey" for="field_textKey">Text Key</label>
+                    <input type="text" class="form-control" name="textKey" id="field_textKey"
+                           formControlName="textKey"/>
+                    <div *ngIf="editForm.get('textKey').invalid && (editForm.get('textKey').dirty || editForm.get('textKey').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('textKey').errors.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="drumbitiousBackendApp.i18nText.textContent" for="field_textContent">Text Content</label>
+                    <input type="text" class="form-control" name="textContent" id="field_textContent"
+                           formControlName="textContent"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="drumbitiousBackendApp.i18nText.createDate" for="field_createDate">Create Date</label>
+                    <div class="d-flex">
+                        <input id="field_createDate" type="datetime-local" class="form-control" name="createDate" formControlName="createDate" placeholder="YYYY-MM-DD HH:mm"/>
+                    </div>
+                    <div *ngIf="editForm.get('createDate').invalid && (editForm.get('createDate').dirty || editForm.get('createDate').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('createDate').errors.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.get('createDate').errors?.ZonedDateTimelocal" jhiTranslate="entity.validation.ZonedDateTimelocal">
+                            This field should be a date and time.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="drumbitiousBackendApp.i18nText.modifyDate" for="field_modifyDate">Modify Date</label>
+                    <div class="d-flex">
+                        <input id="field_modifyDate" type="datetime-local" class="form-control" name="modifyDate" formControlName="modifyDate" placeholder="YYYY-MM-DD HH:mm"/>
+                    </div>
+                    <div *ngIf="editForm.get('modifyDate').invalid && (editForm.get('modifyDate').dirty || editForm.get('modifyDate').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('modifyDate').errors.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.get('modifyDate').errors?.ZonedDateTimelocal" jhiTranslate="entity.validation.ZonedDateTimelocal">
+                            This field should be a date and time.
+                        </small>
+                    </div>
+                </div>
+
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

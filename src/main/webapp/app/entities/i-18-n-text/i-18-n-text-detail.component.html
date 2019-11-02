@@ -1,0 +1,43 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="i18nText">
+            <h2><span jhiTranslate="drumbitiousBackendApp.i18nText.detail.title">I 18 N Text</span> {{i18nText.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="drumbitiousBackendApp.i18nText.locale">Locale</span></dt>
+                <dd>
+                    <span>{{i18nText.locale}}</span>
+                </dd>
+                <dt><span jhiTranslate="drumbitiousBackendApp.i18nText.textKey">Text Key</span></dt>
+                <dd>
+                    <span>{{i18nText.textKey}}</span>
+                </dd>
+                <dt><span jhiTranslate="drumbitiousBackendApp.i18nText.textContent">Text Content</span></dt>
+                <dd>
+                    <span>{{i18nText.textContent}}</span>
+                </dd>
+                <dt><span jhiTranslate="drumbitiousBackendApp.i18nText.createDate">Create Date</span></dt>
+                <dd>
+                    <span>{{i18nText.createDate}}</span>
+                </dd>
+                <dt><span jhiTranslate="drumbitiousBackendApp.i18nText.modifyDate">Modify Date</span></dt>
+                <dd>
+                    <span>{{i18nText.modifyDate}}</span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/i-18-n-text', i18nText.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

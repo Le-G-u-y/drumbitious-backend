@@ -1,0 +1,36 @@
+{
+  "drumbitiousBackendApp": {
+    "plan": {
+      "home": {
+        "title": "Plans",
+        "createLabel": "Create a new Plan",
+        "createOrEditLabel": "Create or edit a Plan",
+        "notFound": "No Plans found"
+      },
+      "created": "A new Plan is created with identifier {{ param }}",
+      "updated": "A Plan is updated with identifier {{ param }}",
+      "deleted": "A Plan is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Plan {{ id }}?"
+      },
+      "detail": {
+        "title": "Plan"
+      },
+      "planName": "Plan Name",
+      "planFocus": "Plan Focus",
+      "description": "Description",
+      "minutesPerSession": "Minutes Per Session",
+      "sessionsPerWeek": "Sessions Per Week",
+      "targetDate": "Target Date",
+      "active": "Active",
+      "createDate": "Create Date",
+      "modifyDate": "Modify Date",
+      "owner": "Owner",
+      "creator": "Creator",
+      "exerciseConfig": "Exercise Config",
+      "help": {
+        "createDate": "the plan the user set to be his current plan"
+      }
+    }
+  }
+}
