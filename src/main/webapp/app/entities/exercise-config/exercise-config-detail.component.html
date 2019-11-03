@@ -1,0 +1,53 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="exerciseConfig">
+            <h2><span jhiTranslate="drumbitiousBackendApp.exerciseConfig.detail.title">Exercise Config</span> {{exerciseConfig.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="drumbitiousBackendApp.exerciseConfig.practiceBpm">Practice Bpm</span></dt>
+                <dd>
+                    <span>{{exerciseConfig.practiceBpm}}</span>
+                </dd>
+                <dt><span jhiTranslate="drumbitiousBackendApp.exerciseConfig.targetBpm">Target Bpm</span></dt>
+                <dd>
+                    <span>{{exerciseConfig.targetBpm}}</span>
+                </dd>
+                <dt><span jhiTranslate="drumbitiousBackendApp.exerciseConfig.minutes">Minutes</span></dt>
+                <dd>
+                    <span>{{exerciseConfig.minutes}}</span>
+                </dd>
+                <dt><span jhiTranslate="drumbitiousBackendApp.exerciseConfig.note">Note</span></dt>
+                <dd>
+                    <span>{{exerciseConfig.note}}</span>
+                </dd>
+                <dt><span jhiTranslate="drumbitiousBackendApp.exerciseConfig.createDate">Create Date</span></dt>
+                <dd>
+                    <span>{{exerciseConfig.createDate}}</span>
+                </dd>
+                <dt><span jhiTranslate="drumbitiousBackendApp.exerciseConfig.modifyDate">Modify Date</span></dt>
+                <dd>
+                    <span>{{exerciseConfig.modifyDate}}</span>
+                </dd>
+                <dt><span jhiTranslate="drumbitiousBackendApp.exerciseConfig.exercise">Exercise</span></dt>
+                <dd>
+                    <div *ngIf="exerciseConfig.exerciseId">
+                        <a [routerLink]="['/exercise', exerciseConfig.exerciseId, 'view']">{{exerciseConfig.exerciseExerciseName}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/exercise-config', exerciseConfig.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

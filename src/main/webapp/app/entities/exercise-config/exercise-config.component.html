@@ -1,0 +1,74 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="drumbitiousBackendApp.exerciseConfig.home.title">Exercise Configs</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-exercise-config" [routerLink]="['/exercise-config/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span  jhiTranslate="drumbitiousBackendApp.exerciseConfig.home.createLabel">
+            Create a new Exercise Config
+            </span>
+        </button>
+    </h2>
+    <jhi-alert-error></jhi-alert-error>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="alert alert-warning" *ngIf="exerciseConfigs?.length === 0">
+        <span jhiTranslate="drumbitiousBackendApp.exerciseConfig.home.notFound">No exerciseConfigs found</span>
+    </div>
+    <div class="table-responsive" *ngIf="exerciseConfigs?.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+            <tr>
+            <th scope="col" ><span jhiTranslate="global.field.id">ID</span></th>
+            <th scope="col" ><span jhiTranslate="drumbitiousBackendApp.exerciseConfig.practiceBpm">Practice Bpm</span></th>
+            <th scope="col" ><span jhiTranslate="drumbitiousBackendApp.exerciseConfig.targetBpm">Target Bpm</span></th>
+            <th scope="col" ><span jhiTranslate="drumbitiousBackendApp.exerciseConfig.minutes">Minutes</span></th>
+            <th scope="col" ><span jhiTranslate="drumbitiousBackendApp.exerciseConfig.note">Note</span></th>
+            <th scope="col" ><span jhiTranslate="drumbitiousBackendApp.exerciseConfig.createDate">Create Date</span></th>
+            <th scope="col" ><span jhiTranslate="drumbitiousBackendApp.exerciseConfig.modifyDate">Modify Date</span></th>
+            <th scope="col" ><span jhiTranslate="drumbitiousBackendApp.exerciseConfig.exercise">Exercise</span></th>
+            <th scope="col"></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let exerciseConfig of exerciseConfigs ;trackBy: trackId">
+                <td><a [routerLink]="['/exercise-config', exerciseConfig.id, 'view' ]">{{exerciseConfig.id}}</a></td>
+                <td>{{exerciseConfig.practiceBpm}}</td>
+                <td>{{exerciseConfig.targetBpm}}</td>
+                <td>{{exerciseConfig.minutes}}</td>
+                <td>{{exerciseConfig.note}}</td>
+                <td>{{exerciseConfig.createDate | date:'medium'}}</td>
+                <td>{{exerciseConfig.modifyDate | date:'medium'}}</td>
+                <td>
+                    <div *ngIf="exerciseConfig.exerciseId">
+                        <a [routerLink]="['/exercise', exerciseConfig.exerciseId , 'view' ]" >{{exerciseConfig.exerciseExerciseName}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group">
+                        <button type="submit"
+                                [routerLink]="['/exercise-config', exerciseConfig.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/exercise-config', exerciseConfig.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/exercise-config', { outlets: { popup: exerciseConfig.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

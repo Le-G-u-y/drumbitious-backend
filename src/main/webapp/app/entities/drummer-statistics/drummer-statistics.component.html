@@ -1,0 +1,82 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="drumbitiousBackendApp.drummerStatistics.home.title">Drummer Statistics</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-drummer-statistics" [routerLink]="['/drummer-statistics/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span  jhiTranslate="drumbitiousBackendApp.drummerStatistics.home.createLabel">
+            Create a new Drummer Statistics
+            </span>
+        </button>
+    </h2>
+    <jhi-alert-error></jhi-alert-error>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="alert alert-warning" *ngIf="drummerStatistics?.length === 0">
+        <span jhiTranslate="drumbitiousBackendApp.drummerStatistics.home.notFound">No drummerStatistics found</span>
+    </div>
+    <div class="table-responsive" *ngIf="drummerStatistics?.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+            <tr>
+            <th scope="col" ><span jhiTranslate="global.field.id">ID</span></th>
+            <th scope="col" ><span jhiTranslate="drumbitiousBackendApp.drummerStatistics.selfAssessedLevelSpeed">Self Assessed Level Speed</span></th>
+            <th scope="col" ><span jhiTranslate="drumbitiousBackendApp.drummerStatistics.selfAssessedLevelGroove">Self Assessed Level Groove</span></th>
+            <th scope="col" ><span jhiTranslate="drumbitiousBackendApp.drummerStatistics.selfAssessedLevelCreativity">Self Assessed Level Creativity</span></th>
+            <th scope="col" ><span jhiTranslate="drumbitiousBackendApp.drummerStatistics.selfAssessedLevelAdaptability">Self Assessed Level Adaptability</span></th>
+            <th scope="col" ><span jhiTranslate="drumbitiousBackendApp.drummerStatistics.selfAssessedLevelDynamics">Self Assessed Level Dynamics</span></th>
+            <th scope="col" ><span jhiTranslate="drumbitiousBackendApp.drummerStatistics.selfAssessedLevelIndependence">Self Assessed Level Independence</span></th>
+            <th scope="col" ><span jhiTranslate="drumbitiousBackendApp.drummerStatistics.selfAssessedLevelLivePerformance">Self Assessed Level Live Performance</span></th>
+            <th scope="col" ><span jhiTranslate="drumbitiousBackendApp.drummerStatistics.selfAssessedLevelReadingMusic">Self Assessed Level Reading Music</span></th>
+            <th scope="col" ><span jhiTranslate="drumbitiousBackendApp.drummerStatistics.note">Note</span></th>
+            <th scope="col" ><span jhiTranslate="drumbitiousBackendApp.drummerStatistics.createDate">Create Date</span></th>
+            <th scope="col" ><span jhiTranslate="drumbitiousBackendApp.drummerStatistics.modifyDate">Modify Date</span></th>
+            <th scope="col" ><span jhiTranslate="drumbitiousBackendApp.drummerStatistics.user">User</span></th>
+            <th scope="col"></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let drummerStatistics of drummerStatistics ;trackBy: trackId">
+                <td><a [routerLink]="['/drummer-statistics', drummerStatistics.id, 'view' ]">{{drummerStatistics.id}}</a></td>
+                <td>{{drummerStatistics.selfAssessedLevelSpeed}}</td>
+                <td>{{drummerStatistics.selfAssessedLevelGroove}}</td>
+                <td>{{drummerStatistics.selfAssessedLevelCreativity}}</td>
+                <td>{{drummerStatistics.selfAssessedLevelAdaptability}}</td>
+                <td>{{drummerStatistics.selfAssessedLevelDynamics}}</td>
+                <td>{{drummerStatistics.selfAssessedLevelIndependence}}</td>
+                <td>{{drummerStatistics.selfAssessedLevelLivePerformance}}</td>
+                <td>{{drummerStatistics.selfAssessedLevelReadingMusic}}</td>
+                <td>{{drummerStatistics.note}}</td>
+                <td>{{drummerStatistics.createDate | date:'medium'}}</td>
+                <td>{{drummerStatistics.modifyDate | date:'medium'}}</td>
+                <td>
+                    {{drummerStatistics.userLogin}}
+                </td>
+                <td class="text-right">
+                    <div class="btn-group">
+                        <button type="submit"
+                                [routerLink]="['/drummer-statistics', drummerStatistics.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/drummer-statistics', drummerStatistics.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/drummer-statistics', { outlets: { popup: drummerStatistics.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,7 @@
+export const enum ExerciseType {
+  RUDIMENT = 'RUDIMENT',
+  TECHNIQUE = 'TECHNIQUE',
+  SONG = 'SONG',
+  PLAYALONG = 'PLAYALONG',
+  SIGHT_READING = 'SIGHT_READING'
+}

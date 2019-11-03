@@ -1,0 +1,87 @@
+{
+    "name": "Plan",
+    "fields": [
+        {
+            "fieldName": "planName",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "planFocus",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "description",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "minutesPerSession",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "sessionsPerWeek",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "targetDate",
+            "fieldType": "Instant"
+        },
+        {
+            "fieldName": "active",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "createDate",
+            "javadoc": "the plan the user set to be his current plan",
+            "fieldType": "Instant",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "modifyDate",
+            "fieldType": "Instant",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "user",
+            "otherEntityRelationshipName": "plan",
+            "relationshipName": "owner",
+            "otherEntityField": "login"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "user",
+            "otherEntityRelationshipName": "plan",
+            "relationshipName": "creator",
+            "otherEntityField": "login"
+        },
+        {
+            "relationshipName": "exerciseConfig",
+            "otherEntityName": "exerciseConfig",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20191102155521",
+    "javadoc": "Practice Plan that gets",
+    "entityTableName": "plan",
+    "dto": "mapstruct",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": true,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "",
+    "applications": "*"
+}

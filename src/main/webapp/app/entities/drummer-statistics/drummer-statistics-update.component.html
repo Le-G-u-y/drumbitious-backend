@@ -1,0 +1,226 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-drummer-statistics-heading" jhiTranslate="drumbitiousBackendApp.drummerStatistics.home.createOrEditLabel">Create or edit a Drummer Statistics</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!editForm.get('id').value">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id"
+                        readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="drumbitiousBackendApp.drummerStatistics.selfAssessedLevelSpeed" for="field_selfAssessedLevelSpeed">Self Assessed Level Speed</label>
+                    <input type="number" class="form-control" name="selfAssessedLevelSpeed" id="field_selfAssessedLevelSpeed"
+                           formControlName="selfAssessedLevelSpeed"/>
+                    <div *ngIf="editForm.get('selfAssessedLevelSpeed').invalid && (editForm.get('selfAssessedLevelSpeed').dirty || editForm.get('selfAssessedLevelSpeed').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('selfAssessedLevelSpeed').errors.min" jhiTranslate="entity.validation.min" [translateValues]="{ min: 0 }">
+                            This field should be at least 0.
+                        </small>
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('selfAssessedLevelSpeed').errors.max" jhiTranslate="entity.validation.max" [translateValues]="{ max: 10 }">
+                            This field cannot be more than 10.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.get('selfAssessedLevelSpeed')?.errors?.number" jhiTranslate="entity.validation.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="drumbitiousBackendApp.drummerStatistics.selfAssessedLevelGroove" for="field_selfAssessedLevelGroove">Self Assessed Level Groove</label>
+                    <input type="number" class="form-control" name="selfAssessedLevelGroove" id="field_selfAssessedLevelGroove"
+                           formControlName="selfAssessedLevelGroove"/>
+                    <div *ngIf="editForm.get('selfAssessedLevelGroove').invalid && (editForm.get('selfAssessedLevelGroove').dirty || editForm.get('selfAssessedLevelGroove').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('selfAssessedLevelGroove').errors.min" jhiTranslate="entity.validation.min" [translateValues]="{ min: 0 }">
+                            This field should be at least 0.
+                        </small>
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('selfAssessedLevelGroove').errors.max" jhiTranslate="entity.validation.max" [translateValues]="{ max: 10 }">
+                            This field cannot be more than 10.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.get('selfAssessedLevelGroove')?.errors?.number" jhiTranslate="entity.validation.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="drumbitiousBackendApp.drummerStatistics.selfAssessedLevelCreativity" for="field_selfAssessedLevelCreativity">Self Assessed Level Creativity</label>
+                    <input type="number" class="form-control" name="selfAssessedLevelCreativity" id="field_selfAssessedLevelCreativity"
+                           formControlName="selfAssessedLevelCreativity"/>
+                    <div *ngIf="editForm.get('selfAssessedLevelCreativity').invalid && (editForm.get('selfAssessedLevelCreativity').dirty || editForm.get('selfAssessedLevelCreativity').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('selfAssessedLevelCreativity').errors.min" jhiTranslate="entity.validation.min" [translateValues]="{ min: 0 }">
+                            This field should be at least 0.
+                        </small>
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('selfAssessedLevelCreativity').errors.max" jhiTranslate="entity.validation.max" [translateValues]="{ max: 10 }">
+                            This field cannot be more than 10.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.get('selfAssessedLevelCreativity')?.errors?.number" jhiTranslate="entity.validation.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="drumbitiousBackendApp.drummerStatistics.selfAssessedLevelAdaptability" for="field_selfAssessedLevelAdaptability">Self Assessed Level Adaptability</label>
+                    <input type="number" class="form-control" name="selfAssessedLevelAdaptability" id="field_selfAssessedLevelAdaptability"
+                           formControlName="selfAssessedLevelAdaptability"/>
+                    <div *ngIf="editForm.get('selfAssessedLevelAdaptability').invalid && (editForm.get('selfAssessedLevelAdaptability').dirty || editForm.get('selfAssessedLevelAdaptability').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('selfAssessedLevelAdaptability').errors.min" jhiTranslate="entity.validation.min" [translateValues]="{ min: 0 }">
+                            This field should be at least 0.
+                        </small>
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('selfAssessedLevelAdaptability').errors.max" jhiTranslate="entity.validation.max" [translateValues]="{ max: 10 }">
+                            This field cannot be more than 10.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.get('selfAssessedLevelAdaptability')?.errors?.number" jhiTranslate="entity.validation.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="drumbitiousBackendApp.drummerStatistics.selfAssessedLevelDynamics" for="field_selfAssessedLevelDynamics">Self Assessed Level Dynamics</label>
+                    <input type="number" class="form-control" name="selfAssessedLevelDynamics" id="field_selfAssessedLevelDynamics"
+                           formControlName="selfAssessedLevelDynamics"/>
+                    <div *ngIf="editForm.get('selfAssessedLevelDynamics').invalid && (editForm.get('selfAssessedLevelDynamics').dirty || editForm.get('selfAssessedLevelDynamics').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('selfAssessedLevelDynamics').errors.min" jhiTranslate="entity.validation.min" [translateValues]="{ min: 0 }">
+                            This field should be at least 0.
+                        </small>
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('selfAssessedLevelDynamics').errors.max" jhiTranslate="entity.validation.max" [translateValues]="{ max: 10 }">
+                            This field cannot be more than 10.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.get('selfAssessedLevelDynamics')?.errors?.number" jhiTranslate="entity.validation.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="drumbitiousBackendApp.drummerStatistics.selfAssessedLevelIndependence" for="field_selfAssessedLevelIndependence">Self Assessed Level Independence</label>
+                    <input type="number" class="form-control" name="selfAssessedLevelIndependence" id="field_selfAssessedLevelIndependence"
+                           formControlName="selfAssessedLevelIndependence"/>
+                    <div *ngIf="editForm.get('selfAssessedLevelIndependence').invalid && (editForm.get('selfAssessedLevelIndependence').dirty || editForm.get('selfAssessedLevelIndependence').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('selfAssessedLevelIndependence').errors.min" jhiTranslate="entity.validation.min" [translateValues]="{ min: 0 }">
+                            This field should be at least 0.
+                        </small>
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('selfAssessedLevelIndependence').errors.max" jhiTranslate="entity.validation.max" [translateValues]="{ max: 10 }">
+                            This field cannot be more than 10.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.get('selfAssessedLevelIndependence')?.errors?.number" jhiTranslate="entity.validation.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="drumbitiousBackendApp.drummerStatistics.selfAssessedLevelLivePerformance" for="field_selfAssessedLevelLivePerformance">Self Assessed Level Live Performance</label>
+                    <input type="number" class="form-control" name="selfAssessedLevelLivePerformance" id="field_selfAssessedLevelLivePerformance"
+                           formControlName="selfAssessedLevelLivePerformance"/>
+                    <div *ngIf="editForm.get('selfAssessedLevelLivePerformance').invalid && (editForm.get('selfAssessedLevelLivePerformance').dirty || editForm.get('selfAssessedLevelLivePerformance').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('selfAssessedLevelLivePerformance').errors.min" jhiTranslate="entity.validation.min" [translateValues]="{ min: 0 }">
+                            This field should be at least 0.
+                        </small>
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('selfAssessedLevelLivePerformance').errors.max" jhiTranslate="entity.validation.max" [translateValues]="{ max: 10 }">
+                            This field cannot be more than 10.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.get('selfAssessedLevelLivePerformance')?.errors?.number" jhiTranslate="entity.validation.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="drumbitiousBackendApp.drummerStatistics.selfAssessedLevelReadingMusic" for="field_selfAssessedLevelReadingMusic">Self Assessed Level Reading Music</label>
+                    <input type="number" class="form-control" name="selfAssessedLevelReadingMusic" id="field_selfAssessedLevelReadingMusic"
+                           formControlName="selfAssessedLevelReadingMusic"/>
+                    <div *ngIf="editForm.get('selfAssessedLevelReadingMusic').invalid && (editForm.get('selfAssessedLevelReadingMusic').dirty || editForm.get('selfAssessedLevelReadingMusic').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('selfAssessedLevelReadingMusic').errors.min" jhiTranslate="entity.validation.min" [translateValues]="{ min: 0 }">
+                            This field should be at least 0.
+                        </small>
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('selfAssessedLevelReadingMusic').errors.max" jhiTranslate="entity.validation.max" [translateValues]="{ max: 10 }">
+                            This field cannot be more than 10.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.get('selfAssessedLevelReadingMusic')?.errors?.number" jhiTranslate="entity.validation.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="drumbitiousBackendApp.drummerStatistics.note" for="field_note">Note</label>
+                    <input type="text" class="form-control" name="note" id="field_note"
+                           formControlName="note"/>
+                    <div *ngIf="editForm.get('note').invalid && (editForm.get('note').dirty || editForm.get('note').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('note').errors.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 10000 }">
+                        This field cannot be longer than 10000 characters.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="drumbitiousBackendApp.drummerStatistics.createDate" for="field_createDate">Create Date</label>
+                    <div class="d-flex">
+                        <input id="field_createDate" type="datetime-local" class="form-control" name="createDate" formControlName="createDate" placeholder="YYYY-MM-DD HH:mm"/>
+                    </div>
+                    <div *ngIf="editForm.get('createDate').invalid && (editForm.get('createDate').dirty || editForm.get('createDate').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('createDate').errors.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.get('createDate').errors?.ZonedDateTimelocal" jhiTranslate="entity.validation.ZonedDateTimelocal">
+                            This field should be a date and time.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="drumbitiousBackendApp.drummerStatistics.modifyDate" for="field_modifyDate">Modify Date</label>
+                    <div class="d-flex">
+                        <input id="field_modifyDate" type="datetime-local" class="form-control" name="modifyDate" formControlName="modifyDate" placeholder="YYYY-MM-DD HH:mm"/>
+                    </div>
+                    <div *ngIf="editForm.get('modifyDate').invalid && (editForm.get('modifyDate').dirty || editForm.get('modifyDate').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('modifyDate').errors.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.get('modifyDate').errors?.ZonedDateTimelocal" jhiTranslate="entity.validation.ZonedDateTimelocal">
+                            This field should be a date and time.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="drumbitiousBackendApp.drummerStatistics.user" for="field_user">User</label>
+                    <select class="form-control" id="field_user" name="user" formControlName="userId">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="userOption.id" *ngFor="let userOption of users; trackBy: trackUserById">{{userOption.login}}</option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
